@@ -2,7 +2,7 @@
   "todos": [
     {
       "id": 2,
-      "title": "cours react js",
+      "title": "react js",
       "complated": true
     },
     {
@@ -16,9 +16,14 @@
       "id": 4
     },
     {
-      "title": "programation java",
+      "title": "cours jee",
       "conplated": true,
       "id": 5
+    },
+    {
+      "title": "programation c",
+      "conplated": true,
+      "id": 6
     }
   ]
 }
