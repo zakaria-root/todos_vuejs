@@ -52,9 +52,12 @@ export default {
                 this.todos = this.todos.map(t => {
                     if (res.data.id === t.id) {
                         return res.data;
+                        
                     }
                     return t;
                 })
+                this.title ='';
+                this.mytodo = null;
             })
         },
         getTodos(){
