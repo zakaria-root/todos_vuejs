@@ -28,7 +28,7 @@
         </ul> -->
 
         <ul class="list-group " v-bind:key="todo.id"  v-for="todo in todos">
-            <Todo :todo="todo" v-on:deleteOnTodo="deleteOnTodo" @updateTodo="editTodo" />
+            <Todo :todo="todo" v-on:deleteOnTodo="deleteOnTodo" @updateTodo="editTodo" @dotoComplated="dotoComplated" />
         </ul>
     </div>
 </template>
@@ -89,7 +89,7 @@ export default {
             e.preventDefault();
             let newTodo={
                 'title': this.title,
-                'conplated' : true
+                'conplated' : false
             }
             axios.post('http://localhost:3000/todos', newTodo)
             .then(res => {
@@ -104,6 +104,20 @@ export default {
             this.title = todo.title;
         }
         
+    },
+    dotoComplated(todo){
+         axios.put('http://localhost:3000/todos/'+todo.id, todo)
+            .then(res => {
+                this.todos = this.todos.map(t => {
+                    if (res.data.id === t.id) {
+                        return res.data;
+                        
+                    }
+                    return t;
+                })
+                 
+               
+            })
     },
     created(){
         this.getTodos();
@@ -122,10 +136,10 @@ h1{
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.6;
-    color: #56d1f7;
+    color: #2abdba;
     background-color: #ffffff6b;
     background-clip: padding-box;
-    border: 1px solid #22bbef;
+    border: 1px solid #2abdba;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -135,14 +149,14 @@ h1{
 .form-control:focus {
     box-shadow: none;
     transition: all .1s linear;
-    border-color: #00bfff;
-    box-shadow: inset 0px 0px 0px 1px #00bfff;
+    border-color: #2abdba;
+    box-shadow: inset 0px 0px 0px 1px #2abdba;
 }
 
 .form-control:focus {
     color: #4f4f4f;
     background-color: #ffffff94;
-    border-color: #91e4ff;
+    border-color: #2abdba;
     outline: 0;
     box-shadow: 0 0 0 0.25rem rgb(18 102 241 / 25%);
 }
